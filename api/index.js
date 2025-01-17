@@ -1,21 +1,23 @@
-const express = require("express");
-const router = express.Router();
-const app = express();
-const port = 3000;
-const mongoose = require('mongoose');
-const  dotenv = require('dotenv');
+import express from "express";
+import userRoutes from "./routes/user.route.js";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_KEY).then(() => {
+const app = express();
+const port = 3000;
+
+mongoose
+  .connect(process.env.MONGO_KEY)
+  .then(() => {
     console.log("Connected to database!");
-  }).catch(() => {
+  })
+  .catch(() => {
     console.log("Connection failed!");
   });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-    });
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
