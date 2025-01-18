@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Oauth from "../components/Oauth";
 
 export default function Signin() {
   const [formData, setFormData] = useState();
@@ -24,7 +25,10 @@ export default function Signin() {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      console.log(data);
+      if (data.sussess === false) {
+        setError(true);
+        return;
+      }
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -80,6 +84,7 @@ export default function Signin() {
           >
             Sign In
           </button>
+          <Oauth/>
         </form>
 
         <div>

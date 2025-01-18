@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Oauth from '../components/Oauth';
 
 export default function Signup() {
 
@@ -104,6 +104,7 @@ const handleSubmit = async (e) => {
         <button className="w-full disabled:opacity-80 rounded-lg p-2 bg-slate-700 hover:opacity-95 text-white uppercase" type="submit">
           Sign Up
         </button>
+        <Oauth/>
         </form>
 
         <div>
